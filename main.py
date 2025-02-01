@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Date
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 import os
+from datetime import datetime
 
 
 class Base(DeclarativeBase):
@@ -15,7 +16,7 @@ class Base(DeclarativeBase):
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.config["SECRET_KEY"] = "123"
 db = SQLAlchemy(model_class=Base)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', "sqlite:///tasks_management.db")
 db.init_app(app)
@@ -49,7 +50,8 @@ def home():
         db.session.add(task)
         db.session.commit()
         return redirect(url_for("home"))
-    return render_template("index.html", form=form, tasks=tasks)
+    year = datetime.now().year
+    return render_template("index.html", form=form, tasks=tasks, year=year)
 
 
 @app.route("/delete/<int:task_id>", methods=['POST','GET'])
