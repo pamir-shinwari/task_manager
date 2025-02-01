@@ -6,6 +6,7 @@ from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Date
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+import os
 
 
 class Base(DeclarativeBase):
@@ -14,9 +15,9 @@ class Base(DeclarativeBase):
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
-app.config["SECRET_KEY"] = "123"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 db = SQLAlchemy(model_class=Base)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///tasks_management.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', "sqlite:///tasks_management.db")
 db.init_app(app)
 
 
