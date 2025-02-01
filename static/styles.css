@@ -1,0 +1,52 @@
+.main{
+display: grid;
+grid-template-columns:1fr 2fr;
+}
+
+.tasks{
+background-color: #ADA991
+}
+
+.task-items{
+display:grid;
+grid-template-columns: 1fr 1fr 1fr;
+padding: 0 0 0 40px;
+
+
+}
+
+.create-tasks{
+background-color:#BFBBA9;
+display:grid;
+justify-items: center;
+}
+
+h1{
+text-align: center;
+padding-bottom: 40px;
+}
+
+
+footer{
+background-color: #333;
+color: #fff;
+text-align: center;
+padding: 10px 0;
+font-size: 14px;
+position:fixed;
+bottom: 0;
+width:100%;
+
+}
+
+
+.top-navbar{
+padding-left: 20px;
+background-color:black;
+padding: 20px 20px 20px 20px;
+position:sticky;
+top:0;
+Z-index:1;
+display:flex;
+justify-content:space-between
+}

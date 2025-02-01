@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="./static/styles.css">
+    {{ bootstrap.load_css()}}
+    {% from "bootstrap5/form.html" import render_form %}
+</head>
+<body>
+<div class="top-navbar">
+
+  <a class="btn btn-info" href="https://pamir-portfolio.onrender.com" target="_blank">About</a>
+</div>
+
+<div class="main">
+    <div class="tasks">
+        <h1>Tasks</h1>
+
+            {% for task in tasks %}
+                <div class="task-items">
+                    <div>{{task.task}}</div>
+                    <div>{{task.date}}</div>
+                    <div><a href="{{url_for('delete', task_id=task.id)}}" >❌</a></div>
+
+                </div>
+
+            {% endfor %}
+
+    </div>
+
+
+
+    <div class="create-tasks">
+        <h1>Add a new task</h1>
+        {{render_form(form)}}
+    </div>
+
+</div>
+
+ <footer>
+    <p>&copy; <span id="year"></span> Pshinwari. All rights reserved.</p>
+ </footer>
+</body>
+</html>
